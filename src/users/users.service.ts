@@ -13,6 +13,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
 import { UserDocument } from './schemas/user.schema';
+
 const PRIVATE_ADDON_PASSWORD = process.env.EXTRA_PASSWORD_STRING;
 @Injectable()
 export class UsersService {
@@ -96,6 +97,10 @@ export class UsersService {
       { _id: id },
       { token: newToken, lastLogin: new Date().toISOString() },
     ).exec();
-    return updateUserResult;
+    
+    return {
+      statusCode: 200,
+      data: updateUserResult
+    };
   }
 }

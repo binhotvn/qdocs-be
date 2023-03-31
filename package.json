@@ -1,5 +1,5 @@
 {
-  "name": "fundiin-backend",
+  "name": "YET_API_CORE",
   "version": "0.0.1",
   "description": "",
   "author": "",
@@ -34,7 +34,6 @@
     "class-validator": "^0.13.2",
     "js-sha512": "^0.8.0",
     "mongoose": "^6.1.10",
-    "nestjs-multer-extended": "^1.4.2",
     "node-rsa": "^1.1.1",
     "passport": "^0.5.2",
     "passport-jwt": "^4.0.0",
