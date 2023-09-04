@@ -13,7 +13,7 @@ import { APP_GUARD } from '@nestjs/core';
     PassportModule,
     CacheModule.register(),
     JwtModule.register({
-      privateKey: PRIVATE_KEY,
+      privateKey: PRIVATE_KEY(),
 
       signOptions: { expiresIn: '60d', algorithm: 'RS256' },
     }),
@@ -21,10 +21,6 @@ import { APP_GUARD } from '@nestjs/core';
   ],
   controllers: [AuthController],
   providers: [
-    {
-      provide: APP_GUARD,
-      useClass: AllExceptionsFilter,
-    },
     UtilsService,
     AuthService,
     LocalStrategy,

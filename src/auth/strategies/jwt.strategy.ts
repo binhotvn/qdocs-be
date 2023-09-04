@@ -37,7 +37,6 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
         this.cacheManager.set(payload.token, user);
         return {
           id: payload.id,
-          business_id: payload.business_id,
           token: payload.token,
           name: payload.name,
         };
@@ -48,7 +47,6 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
 
     return {
       id: payload.id,
-      business_id: payload.business_id,
       token: payload.token,
       name: payload.name,
     };
