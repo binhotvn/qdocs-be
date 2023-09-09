@@ -1,7 +1,7 @@
 
 FROM node:18-alpine as development
 WORKDIR /app
-COPY package.json yarn.lock ./
+COPY package.json ./
 RUN yarn install --frozen-lockfile --ignore-scripts
 
 FROM node:18-alpine as build
