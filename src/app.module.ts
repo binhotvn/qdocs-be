@@ -1,5 +1,5 @@
-import { CacheModule, Module } from '@nestjs/common';
-
+import { CacheModule } from '@nestjs/cache-manager';
+import { Module } from '@nestjs/common';
 import * as path from 'path';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from './app.controller';
@@ -20,9 +20,6 @@ import { UtilsService } from './utils/utils.service';
     AuthModule,
   ],
   controllers: [AppController],
-  providers: [
-    AppService,
-    UtilsService,
-  ],
+  providers: [AppService, UtilsService],
 })
 export class AppModule {}
