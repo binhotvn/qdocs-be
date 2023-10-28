@@ -7,5 +7,5 @@
     "TOKEN_EXPIRED": "Token expired. Please try to login again.",
     "NOT_THING_CHANGED" : "Updated but nothing changed",
     "UPDATED": "Updated",
-    "ENCRYPTION_KEY_NOT_INCLUDED": "Encryption key not included",
+    "ENCRYPTION_KEY_NOT_INCLUDED": "Encryption key not included"
 }

@@ -29,7 +29,7 @@ function setup() {
     console.log(`Private key exists at ${privateKeyPath}`);
   } else {
     console.log(`Private key does not exist. Generating...`);
-    const { privateKey, publicKey } = generateRSAKey();
+    const { privateKey } = generateRSAKey();
 
     fs.mkdirSync(path.dirname(privateKeyPath), { recursive: true });
     fs.writeFileSync(privateKeyPath, privateKey, 'utf-8');

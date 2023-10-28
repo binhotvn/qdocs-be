@@ -1,7 +1,6 @@
 import { Prop, Schema } from '@nestjs/mongoose';
 import { IsEmail, IsPhoneNumber } from 'class-validator';
 import { createdAndModified } from 'src/type/entities/createModify';
-import { LogClass } from '../../type/entities/log';
 import { v4 as uuidv4 } from 'uuid';
 
 @Schema()
