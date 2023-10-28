@@ -1,12 +1,21 @@
 
 
-# Backend
+# NestJS REST Back-end Templates
 
 
-Yêu cầu NodeJS > 16.0.0
+### Feature List
+
+| Feature            | Status    | Additional Info                            |
+|--------------------|-----------|--------------------------------------------|
+| Users              | :white_check_mark: Done      | User management and registration          |
+| Roles              | :x: Not Done  | Role-based access control                  |
+| Authentications    | :white_check_mark: Done      | User authentication and token management  |
+| Language           | :hourglass: Half      | Multilingual support in progress           |
+
+Last updated: 28 Oct 2023.
 
 
-# Installation
+# Installation for developments
 
 ```bash
 $ yarn global add @nestjs/cli
@@ -32,10 +41,3 @@ $ yarn start:dev
 $ yarn start:prod
 ```
 
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## License
-
-Nest is [MIT licensed](LICENSE).
