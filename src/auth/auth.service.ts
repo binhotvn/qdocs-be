@@ -7,28 +7,27 @@ import { UtilsService } from 'src/utils/utils.service';
 /**
  * EXTRA_PASSWORD_STRING la gia tri bien khien mat khau co them extra string cho du lo database
  * cung khong the decrypt ra origin password
-*/
+ */
 export const PRIVATE_ADDON_PASSWORD = process.env.EXTRA_PASSWORD_STRING;
 @Injectable()
 export class AuthService {
   constructor(
     private readonly jwtService: JwtService,
     private readonly UserService: UsersService,
-    private readonly utils: UtilsService
-      ) {}
+    private readonly utils: UtilsService,
+  ) {}
   async vaildLogin(eop: string, password: string) {
     let user = await this.UserService.getByEOP(eop);
     let message;
     if (user && user.password === sha512(password + PRIVATE_ADDON_PASSWORD)) {
       /**
-       * Tao token moi sau do cap nhat token vao database (UPDATE $ WHERE `_id`='user.id')
-       * Dong thoi viec update nay se revoke cac token cu => cac token cu se bi logOut
+       * When new token created it will be update to database and revoke old token
        */
       const newToken = this.utils.randomToken();
       await this.UserService.updateUserToken(user._id, newToken);
 
       /**
-        Fetch du lieu moi tu database xong khi da update Token
+        Fetch new data from database to make sure it's updated
       */
       user = await this.UserService.getById(user._id);
 
@@ -36,10 +35,9 @@ export class AuthService {
 
       result['_doc'].token = newToken;
 
-      return { data: result['_doc'], message: 'SUCCESS' };
+      return { data: result['_doc'], message: 'LOGIN_SUCCESS' };
     } else {
-      // console.error('Tài khoản mật khẩu không chính xác');
-      message = 'USER_PASSWORD_NOT_CORRECT';
+      message = 'LOGIN_FAILED_INVALID_CREDENTIALS';
     }
 
     return { data: null, message: message };
@@ -57,7 +55,7 @@ export class AuthService {
     };
     return {
       statusCode: 200,
-      message: "LOGIN_SUCCESS",
+      message: 'LOGIN_SUCCESS',
       data: {
         access_token: this.jwtService.sign(payload),
       },

@@ -19,16 +19,16 @@ const PRIVATE_ADDON_PASSWORD = process.env.EXTRA_PASSWORD_STRING;
 export class UsersService {
   /**
    *
-   * @param UserModel Mongoose Model de truy van database cua MongoDB
+   * @param UserModel Mongoose Model to query database
    */
   constructor(
-    @InjectModel('Users') private readonly UserModel: Model<UserDocument>,
+    @InjectModel('users') private readonly UserModel: Model<UserDocument>,
     private readonly utils: UtilsService,
   ) {}
 
   /**
    *
-   * @param createUserDto : DTO cua tao user moi co class-vaildator de verify input return theo MSG_CODE
+   * @param createUserDto : DTO to create new user
    * @returns : Promise<User>
    */
   async isUserExist(userInformation: User): Promise<boolean> {
@@ -73,7 +73,7 @@ export class UsersService {
       } else {
         return {
           statusCode: 200,
-          message: "UPDATED"
+          message: 'UPDATED',
         };
       }
     }
@@ -97,10 +97,10 @@ export class UsersService {
       { _id: id },
       { token: newToken, lastLogin: new Date().toISOString() },
     ).exec();
-    
+
     return {
       statusCode: 200,
-      data: updateUserResult
+      data: updateUserResult,
     };
   }
 }

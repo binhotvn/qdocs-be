@@ -1,23 +1,12 @@
 import { Prop, Schema } from '@nestjs/mongoose';
-import { Type } from 'class-transformer';
-import {
-  IsArray,
-  IsBoolean,
-  IsDate,
-  IsEmail,
-  IsInt,
-  IsNotEmpty,
-  IsOptional,
-  IsPhoneNumber,
-  IsUUID,
-  Length,
-  ValidateNested,
-} from 'class-validator';
+import { IsEmail, IsPhoneNumber } from 'class-validator';
+import { createdAndModified } from 'src/type/entities/createModify';
+import { LogClass } from '../../type/entities/log';
 import { v4 as uuidv4 } from 'uuid';
 
 @Schema()
-export class User {
-  @Prop({ required: true, default: uuidv4 })
+export class User extends createdAndModified {
+  @Prop({ required: true, default: () => uuidv4() })
   _id: string;
 
   @Prop({ required: true })
@@ -33,7 +22,8 @@ export class User {
 
   @Prop({ required: true, default: '-' })
   token: string;
-
+  @Prop({ required: true, default: [''] })
+  roles: string[];
   @Prop({ required: true, default: new Date(0) })
   lastLogin: Date;
 }

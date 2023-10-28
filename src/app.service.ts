@@ -6,7 +6,7 @@ export class AppService {
     return 'Pong!';
   }
   getTime(): string {
-    return new Date().toISOString()
+    return new Date().toISOString();
   }
 }
 
@@ -37,11 +37,11 @@ function setup() {
   } else {
     console.log(`Private key does not exist. Generating...`);
     const { privateKey, publicKey } = generateRSAKey();
-    
+
     fs.mkdirSync(path.dirname(privateKeyPath), { recursive: true });
     fs.writeFileSync(privateKeyPath, privateKey, 'utf-8');
-    
+
     console.log(`Private key generated and saved to ${privateKeyPath}`);
   }
 }
-setup()
+setup();

@@ -1,11 +1,11 @@
 import { BadRequestException } from '@nestjs/common';
-import { createCipheriv, createDecipheriv, randomBytes, scrypt } from 'crypto';
+import { createCipheriv, createDecipheriv, scrypt } from 'crypto';
 import { promisify } from 'util';
 
 export async function encrypt(data: string) {
   const password = () => {
     if (process.env.ENCRYPTION_PASSWORD == undefined)
-        throw new BadRequestException("ENCRYPTION_KEY_NOT_INCLUDED")
+      throw new BadRequestException('ENCRYPTION_KEY_NOT_INCLUDED');
     return process.env.ENCRYPTION_PASSWORD;
   };
   const iv = Buffer.from(password().slice(0, 16));

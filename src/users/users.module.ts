@@ -8,7 +8,7 @@ import { UtilsService } from 'src/utils/utils.service';
 @Module({
   imports: [
     MongooseModule.forFeature([
-      { name: 'Users', schema: UserSchema, collection: 'users' },
+      { name: 'users', schema: UserSchema, collection: 'users' },
     ]),
   ],
   controllers: [UsersController],

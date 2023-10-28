@@ -37,7 +37,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
           name: payload.name,
         };
       } else {
-        throw new UnauthorizedException('TOKEN_INVAILD');
+        throw new UnauthorizedException('TOKEN_INVALID');
       }
     }
 
