@@ -2,7 +2,7 @@ import { Inject, Injectable, UnauthorizedException } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { Cache } from 'cache-manager';
-import { PUBLIC_KEY } from 'src/utils/utils.service';
+import { PRIVATE_KEY, PUBLIC_KEY } from 'src/utils/utils.service';
 import { AuthService } from '../auth.service';
 import { CACHE_MANAGER } from '@nestjs/cache-manager';
 @Injectable()
@@ -14,7 +14,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       ignoreExpiration: false,
-      secretOrKey: PUBLIC_KEY,
+      secretOrKey: PRIVATE_KEY(),
       algorithms: ['RS256'],
     });
   }
@@ -24,6 +24,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
       throw new UnauthorizedException('TOKEN_NOT_FOUND');
     }
     const value = await this.cacheManager.get(payload.token);
+
     if (value == null) {
       const user = await this.UserServices.getUserFromToken(payload.token);
       if (user == null) {
@@ -34,7 +35,6 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
         return {
           id: payload.id,
           token: payload.token,
-          name: payload.name,
         };
       } else {
         throw new UnauthorizedException('TOKEN_INVALID');
@@ -44,7 +44,6 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     return {
       id: payload.id,
       token: payload.token,
-      name: payload.name,
     };
   }
 }

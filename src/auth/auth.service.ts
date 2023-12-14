@@ -49,9 +49,7 @@ export class AuthService {
     const payload_user = user;
     const payload = {
       id: payload_user._id,
-      business_id: payload_user.business_id,
       token: payload_user.token,
-      name: payload_user.name,
     };
     return {
       statusCode: 200,

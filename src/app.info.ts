@@ -1,7 +1,7 @@
-import { PackageJsonType } from './type/package';
+import { PackageJsonType } from './type/package.interface';
 
 export const AppInfo = <PackageJsonType>{
-  name: 'NestJS Empty Project',
-  version: '1.0.0',
-  description: 'NestJS Empty Project',
+  name: 'QDOCs',
+  version: '0.0.1',
+  description: 'Fast way to create documentation',
 };
