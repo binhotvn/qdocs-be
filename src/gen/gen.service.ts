@@ -38,7 +38,7 @@ export class GenService {
     const newDocsFiltered = {
       name: createGenDto.name,
       filename: qdocQuery.filename,
-      description: createGenDto.description,
+      description: createGenDto.description || '',
       id_qdoc: qdocQuery._id,
       attr: newAttr,
     };

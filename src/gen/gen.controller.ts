@@ -7,7 +7,6 @@ import {
   Param,
   Delete,
   Res,
-  Header,
 } from '@nestjs/common';
 import { Response } from 'express';
 
