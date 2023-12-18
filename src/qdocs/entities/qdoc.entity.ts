@@ -11,6 +11,9 @@ export class Attr {
   @Prop({ required: true, default: '' })
   @IsNotEmpty()
   var: string;
+  @Prop({ required: true, default: '' })
+  @IsNotEmpty()
+  default: string;
   @Prop({ required: true, default: AttrEnum.STRING })
   @IsEnum(AttrEnum)
   type: string;
