@@ -57,7 +57,7 @@ export class GenService {
     const docx = {};
     docx['ngay'] = (new Date()).getDate();
     docx['thang'] = (new Date()).getMonth();
-    docx['nam'] = (new Date()).getYear();
+    docx['nam'] = (new Date()).getFullYear();
 
     gen.attr.map((attr: GenResult) => {
       docx[attr.var] = attr.value;
