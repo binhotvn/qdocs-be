@@ -55,12 +55,13 @@ export class GenService {
       process.cwd() + '/public/file/' + gen.filename,
     );
     const docx = {};
+    docx['ngay'] = (new Date()).getDate();
+    docx['thang'] = (new Date()).getMonth();
+    docx['nam'] = (new Date()).getYear();
+
     gen.attr.map((attr: GenResult) => {
       docx[attr.var] = attr.value;
     });
-    docx['ngay'] = (new Date()).getDate();
-    dox['thang'] = (new Date()).getMonth();
-        dox['nam'] = (new Date()).getYear();
 
     const buffer = await createReport({
       template,
