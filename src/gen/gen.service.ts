@@ -58,6 +58,10 @@ export class GenService {
     gen.attr.map((attr: GenResult) => {
       docx[attr.var] = attr.value;
     });
+    docx['ngay'] = (new Date()).getDate();
+    dox['thang'] = (new Date()).getMonth();
+        dox['nam'] = (new Date()).getYear();
+
     const buffer = await createReport({
       template,
       data: docx,
